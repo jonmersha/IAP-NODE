@@ -9,6 +9,7 @@ const updateQuery=require('../util/update');
 
 //audit_object
     router.get('/get',(req,res)=>{
+      console.log("Aobject Request")
     selectQeury.getAll(res,'audit_object','audit_object');  
     })
   router.post('/add',(req,res)=>{ 

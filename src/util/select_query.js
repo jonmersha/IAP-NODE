@@ -30,7 +30,7 @@ function queryExec(res,command,containerObject){
                 message:"excecusion succefully completed",
                 response:result
             }
-            res.send({[containerObject]:rsp.response})
+            res.send({data:rsp.response})
             
         }
         
