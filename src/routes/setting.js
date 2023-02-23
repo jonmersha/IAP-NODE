@@ -10,7 +10,7 @@ router.get('/risk/get',(req,res)=>{
     selectQeury.getAll(res,'risk_level','risk_level');   
     })
 
-    router.get('/year/get',(req,res)=>{
+router.get('/year/get',(req,res)=>{
         selectQeury.getAll(res,'plan_year','plan_year');   
         })
 
