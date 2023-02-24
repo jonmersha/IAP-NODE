@@ -12,6 +12,14 @@ const updateQuery=require('../util/update');
       console.log("Aobject Request")
     selectQeury.getAll(res,'audit_object','audit_object');  
     })
+    //audit_object
+    router.get('/get/id/',(req,res)=>{
+      console.log("Aobject Request")
+      var id = req.query.id
+      console.log(id)
+      //res.send(id)
+    selectQeury.selectCriateria(res,'audit_object','audit_object',id);  
+    })
   router.post('/add',(req,res)=>{ 
     insertQuery.add(req.body,'audit_object',res); 
     })

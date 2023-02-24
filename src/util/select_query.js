@@ -11,9 +11,12 @@ function getPlanList(){
 function selectSome(res,tableName){
     queryExec(res,`SELECT * FROM ${tableName}`);
 }
-
+function selectCriateria(res,tableName,ob,id){
+    queryExec(res,`SELECT * FROM ${tableName} where id=${id}`);
+}
 
 function queryExec(res,command,containerObject){
+    //console.log(command)
     con.query(command,(err,result)=>{
 
         if(err){
@@ -39,4 +42,4 @@ function queryExec(res,command,containerObject){
 }
 
 
-module.exports={getAll,selectSome}
+module.exports={getAll,selectSome,selectCriateria}
