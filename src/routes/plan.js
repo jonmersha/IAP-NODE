@@ -13,7 +13,7 @@ router.get('/get',(req,res)=>{
 router.get('/view',(req,res)=>{
         selectQeury.getAll(res,'plan_list','plan_list');   
     })
-router.post('/add',(req,res)=>{
+router.post('/add',login,(req,res)=>{
       insertQuery.add(req.body,'audit_plan',res);   
       })
 router.delete('/delete',(req,res)=>{
@@ -27,4 +27,18 @@ router.get('/get',(req,res)=>{
                 selectQeury.getAll(res,'audit_plan','audit_plan');   
                 })
 
+
+
+function login(req, res, next) {
+        
+        const  user  = req.body.user;
+        // if (!authorization || authorization !== apiKey) {
+        // return res.status(401).json({ message: 'Invalid API key.' });
+        // }
+        //perform login operations
+            //get users from user tble
+        return res.send(user)
+        
+        next();
+        }
 module.exports = router;

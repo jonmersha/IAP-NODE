@@ -3,6 +3,7 @@ const app=express();
 const nodemailer = require('nodemailer');
 const https = require('https')
 const cores =require('cors')
+const crypto = require('crypto');
 
 //custom imports 
 const selectQeury=require('./util/select_query.js');
@@ -25,9 +26,24 @@ app.use(
   )
   app.use(express.json())
 
-
-
+//cheking for API keys
+  app.use((req, res, next) => {
+    
+    // console.log(apiKey)
+    // const { authorization } = req.headers;
+    // if (!authorization || authorization !== apiKey) {
+    // return res.status(401).json({ message: 'Invalid API key.' });
+    // }
+    next();
+  })
   
+  // checking user login
+  app.use((req, res, next) => {
+    //console.log('Second middleware function')
+    var credentioals=req.body.credentials
+    next()
+  })
+
 //////////////////////////////////////////////===Route===////////////////////////
 // 1 audit_plan
     const planRoutes = require("./routes/plan");
@@ -137,6 +153,27 @@ const engamentToAuditeesRoutes=require("./routes/engagement_to_audtees")
     //Risk Level
     const setting=require("./routes/setting")
     app.use("/setting",setting)
+
+
+function generateApiKey() {
+  return crypto.randomBytes(16).toString('hex');
+}
+
+const apiKey = generateApiKey();
+function apiKeyMiddleware(req, res, next) {
+    console.log(apiKey)
+  const { authorization } = req.headers;
+  if (!authorization || authorization !== apiKey) {
+    return res.status(401).json({ message: 'Invalid API key.' });
+  }
+  next();
+}
+
+app.get('/api/users', apiKeyMiddleware, (req, res) => {
+  // Return users data
+  
+  res.send("Test Passed")
+});
 
 
 app.listen(8080)
