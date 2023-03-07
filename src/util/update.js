@@ -2,9 +2,7 @@ const con=require('../data/database.js')
 
 
 function update(json,tableName,criateria,connector,res,){
-
     const whereStatment = Object.keys(criateria).map(key => `${key} = '${criateria[key]}'`).join(` ${connector} `);
-
     const setStatements = Object.keys(json).map(key => `${key} = '${json[key]}'`).join(", ");
     
     const updateStatement = `UPDATE ${tableName} SET ${setStatements} WHERE ${whereStatment};`;

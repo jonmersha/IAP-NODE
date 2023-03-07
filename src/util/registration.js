@@ -9,7 +9,6 @@ function add(json,tableName,res){
 }
 
 function execute(res,command,tableName){
-
     con.query(command,(err,result)=>{
         if(err)
         if(err.code==='ER_DUP_ENTRY'){
