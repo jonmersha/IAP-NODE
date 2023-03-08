@@ -40,7 +40,7 @@ function exeLogin(res,req,command){
                 res.send({data:rsp})
             }
             else{
-               if((result[0].is_active!=0) || (result[0].lock_status != 0)){
+               if((result[0].is_active==0) || (result[0].lock_status = 0)){
                 statutu=false;
                 message='Your account is not activated or It is locked'
                 let rsp={
