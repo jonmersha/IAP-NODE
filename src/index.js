@@ -27,21 +27,53 @@ app.use(
   app.use(express.json())
 
 //cheking for API keys
-  app.use((req, res, next) => {
+  //app.use((req, res, next) => {
     
     // console.log(apiKey)
     // const { authorization } = req.headers;
     // if (!authorization || authorization !== apiKey) {
     // return res.status(401).json({ message: 'Invalid API key.' });
     // }
-    next();
-  })
+    //next();
+ // })
   
   // checking user login
-  app.use((req, res, next) => {
-    //console.log('Second middleware function')
-    var credentioals=req.body.credentials
-    next()
+  // app.use((req, res, next) => {
+  //   //console.log('Second middleware function')
+  //   var credentioals=req.body.credentials
+  //   next()
+  // })
+
+
+  const apiKey="0e9ef6df783b003d8c0300ac4656a142"
+  app.use((req,res,next)=>{
+    const { authorization } = req.headers;
+    if (!authorization || authorization !== apiKey) {
+      return res.status(401).json({data:{ 
+        success:false,
+        message: 'Invalid API key' }});
+    }
+    next();
+  });
+
+
+
+//   function apiKeyMiddleware(req, res, next) {
+//     console.log(apiKey)
+//   const { authorization } = req.headers;
+//   if (!authorization || authorization !== apiKey) {
+//     return res.status(401).json({ message: 'Invalid API key.detected' });
+//   }
+//   next();
+// }
+
+
+  // app.use((req,res)=>{
+  //   return  res.status(401).json({ message: 'Invalid API key.' });
+  // })
+
+  app.get("/tt",(req,res)=>{
+    res.send('Initial Help help')
   })
 
 //////////////////////////////////////////////===Route===////////////////////////
@@ -138,9 +170,12 @@ const engamentToAuditeesRoutes=require("./routes/engagement_to_audtees")
     const teamRoutes=require("./routes/team");
     app.use("/team",teamRoutes)
 
+ 
+
 //24 unit_l
     const unitLevelRoutes=require("./routes/unit_l");
     app.use("/unitl",unitLevelRoutes)
+//=================================================User Managemnt Part
 
 //25 utable
     const userRoutes=require("./routes/utable");
@@ -155,23 +190,23 @@ const engamentToAuditeesRoutes=require("./routes/engagement_to_audtees")
     app.use("/setting",setting)
 
 
-function generateApiKey() {
-  return crypto.randomBytes(16).toString('hex');
-}
+// function generateApiKey() {
+//   return crypto.randomBytes(16).toString('hex');
+// }
 
-const apiKey = generateApiKey();
-function apiKeyMiddleware(req, res, next) {
-    console.log(apiKey)
-  const { authorization } = req.headers;
-  if (!authorization || authorization !== apiKey) {
-    return res.status(401).json({ message: 'Invalid API key.' });
-  }
-  next();
-}
+//const apiKey = generateApiKey();
+// const apiKeys='0e9ef6df783b003d8c0300ac4656a142'
+// function apiKeyMiddleware(req, res, next) {
+//     console.log(apiKey)
+//   const { authorization } = req.headers;
+//   if (!authorization || authorization !== apiKeys) {
+//     return res.status(401).json({ message: 'Invalid API key. detected' });
+//   }
+//   next();
+// }
 
-app.get('/api/users', apiKeyMiddleware, (req, res) => {
+app.get('/api/users', (req, res) => {
   // Return users data
-  
   res.send("Test Passed")
 });
 
