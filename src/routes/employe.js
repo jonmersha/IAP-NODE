@@ -9,6 +9,9 @@ const updateQuery=require('../util/update');
 router.get('/get',(req,res)=>{
     selectQeury.getAll(res,'employe','employe');   
     })
+router.post('/get/one',(req,res)=>{
+        selectQeury.selectCriateria(res,'employe',req.body.id);   
+        })
   
 router.post('/add',(req,res)=>{
       insertQuery.add(req.body,'employe',res);   

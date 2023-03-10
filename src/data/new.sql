@@ -53,3 +53,57 @@ LEFT JOIN `audit_type` ON `audit_object`.`audit_cat` = `audit_type`.`id`;
 
 
 -- ============new 
+-- orginizational units
+create table orginizations(
+    id int AUTO_INCREMENT primary key,
+    org_code varchar(200),
+    name_en varchar(200),
+    name_am varchar(200),
+    name_other varchar(200)
+)
+
+create table ou1(
+    org_id varchar() int primary key,
+    name varchar(),
+    org_code
+);
+create table ou2();
+create table ou3();
+create table ou4();
+
+
+
+CREATE TABLE auditees(
+    ou_id int,
+    leader_id int,
+    auditees_type int,
+    phone_number int,
+    adress int,
+    region_id int,
+    city_id int
+);
+create table region(
+  id int primary key
+	
+);
+create table zone(
+id int primary key,
+region_id int,
+name varchar(),
+);
+create tebale wereda(
+    id int AUTO_INCREMENT primary key,
+    zone int,
+    name varchar(200)
+)
+create table kebele(
+    int AUTO_INCREMENT primary key,
+    wereda int,
+    name varchar(200)
+)
+create table city(
+	id int primary key AUTO_INCREMENT,
+    regin_id int,
+    name varchar(200) UNIQUE,
+    
+);

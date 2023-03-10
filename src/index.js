@@ -76,6 +76,11 @@ app.use(
     res.send('Initial Help help')
   })
 
+
+  app.get('/health',(req,res)=>{
+    res.send(true)
+  });
+
 //////////////////////////////////////////////===Route===////////////////////////
 // 1 audit_plan
     const planRoutes = require("./routes/plan");

@@ -11,7 +11,7 @@ function getPlanList(){
 function selectSome(res,tableName){
     queryExec(res,`SELECT * FROM ${tableName}`);
 }
-function selectCriateria(res,tableName,ob,id){
+function selectCriateria(res,tableName,id){
     queryExec(res,`SELECT * FROM ${tableName} where id=${id}`);
 }
 
