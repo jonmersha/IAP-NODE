@@ -187,6 +187,10 @@ app.use("/finding", findingRoutes);
 const setting = require("./routes/setting");
 app.use("/setting", setting);
 
+//Quarter And Month
+const util = require("./routes/util");
+app.use("/util", util);
+
 // function generateApiKey() {
 //   return crypto.randomBytes(16).toString('hex');
 // }

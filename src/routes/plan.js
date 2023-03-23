@@ -9,6 +9,13 @@ const updateQuery = require("../util/update");
 router.get("/get", (req, res) => {
   selectQeury.getAll(res, "audit_plan", "audit_plan");
 });
+
+router.post("/get/one", (req, res) => {
+  selectQeury.allWithCriateria(res, "audit_plan", req);
+});
+router.post("/view/one", (req, res) => {
+  selectQeury.allWithCriateria(res, "plan_list", req);
+});
 router.get("/view", (req, res) => {
   selectQeury.getAll(res, "plan_list", "plan_list");
 });
